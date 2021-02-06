@@ -19,6 +19,7 @@ router.post(
         check( 'realese', 'Gender is required' ).notEmpty(),
         check( 'price', 'Price is required' ).notEmpty(),
         check( 'stock', 'Stock is required' ).notEmpty(),
+        check( 'rate', 'rate is required').notEmpty(),
         check( 'url', 'Cover is required' ).notEmpty(),
         ValidatorMidd
 
@@ -42,7 +43,7 @@ router.put(
         check( 'realese', 'Gender is required' ).notEmpty(),
         check( 'price', 'Price is required' ).notEmpty(),
         check( 'stock', 'Stock is required' ).notEmpty(),
-        check( 'url', 'Cover is required' ).notEmpty(),
+        check( 'rate', 'rate is required').notEmpty(),
         ValidatorMidd
 
     ]

@@ -17,7 +17,11 @@ const gameSchema = Schema(
 
         stock : { type : Number, require : true },
 
+        rate : { type : Number, required : true },
+
         url : { type : String, require : true },
+
+        url2 : { type : String, require : true },
 
     }
     
