@@ -28,7 +28,7 @@ const newGame = async ( request, response = response ) =>
         await game.save();
 
 
-        return response.status( 200 ).json( { ok : true, msg : 'New game' } );
+        return response.status( 200 ).json( { ok : true, msg : 'Game added succefully' } );
 
     } 
     catch( error ) 

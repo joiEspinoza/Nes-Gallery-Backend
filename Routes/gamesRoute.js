@@ -21,6 +21,7 @@ router.post(
         check( 'stock', 'Stock is required' ).notEmpty(),
         check( 'rate', 'rate is required').notEmpty(),
         check( 'url', 'Cover is required' ).notEmpty(),
+        check( 'url2', 'Screenshoot is required' ).notEmpty(),
         ValidatorMidd
 
     ]
