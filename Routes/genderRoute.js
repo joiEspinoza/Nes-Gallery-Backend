@@ -24,7 +24,7 @@ router.post(
 router.get( '/getGenders', [], getGenders );
 
 
-router.delete( '/deleteGender', [], deleteGender )
+router.delete( '/deleteGender', [], deleteGender );
 
 
 //////---------------------------------------------->>>>>

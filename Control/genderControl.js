@@ -10,7 +10,7 @@ const createGender = async ( request, response = response ) =>
 {
     try 
     {   
-        
+        console.log(  request.body)
         let gender = await Gender.findOne( request.body );
 
         if( gender )
