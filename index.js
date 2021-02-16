@@ -22,7 +22,7 @@ connectDB();
 let PORT;
 !process.env.PORT ? PORT = 4030 : PORT = process.env.PORT;
 
-
+console.log( process.env.PORT )
 app.listen( PORT, () => 
 { console.log( `Server running in port ${ PORT }` ) } );
 
