@@ -28,15 +28,15 @@ router.post(
 );
 
 
-router.get( '/getGames', [], getGames );
+router.get( '/getgames', [], getGames );
 
 
-router.post( '/getGamesByGender', [], getGamesByGender );
+router.post( '/getgamesbygender', [], getGamesByGender );
 
 
 router.post( 
     
-    '/getGamesByTitle', 
+    '/getgamesbytitle', 
     [
         check( 'search', 'A title is required' ).notEmpty(),
         ValidatorMidd
@@ -49,7 +49,7 @@ router.post(
 router.put( 
     
 
-    '/updateGame', 
+    '/updategame', 
     [
 
         check( '_id', 'Id Game is required' ).notEmpty(),
@@ -67,7 +67,7 @@ router.put(
 router.delete( 
     
 
-    '/deleteGame', 
+    '/deletegame', 
     [
         check( '_id', 'Id Game is required' ).notEmpty(),
         ValidatorMidd
