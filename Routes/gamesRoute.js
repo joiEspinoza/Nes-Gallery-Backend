@@ -38,7 +38,7 @@ router.post(
     
     '/getgamesbytitle', 
     [
-        check( 'search', 'A title is required' ).notEmpty(),
+        check( 'search', 'Search --> A title is required' ).notEmpty(),
         ValidatorMidd
     ], 
     getGamesByTitle 
