@@ -67,7 +67,7 @@ const getGames = async ( request, response = response ) =>
     {
 
         console.log( error );
-        return response.status( 500 ).json( { ok : false, msg : '1Something went wrong, please contact the administrator' } );
+        return response.status( 500 ).json( { ok : false, msg : 'Something went wrong, please contact the administrator' } );
 
     };
 
