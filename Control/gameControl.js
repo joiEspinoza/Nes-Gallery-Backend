@@ -18,7 +18,7 @@ const newGame = async ( request, response = response ) =>
 
         if( game )
         {
-            return response.status( 400 ).json( { ok : false, msg : 'Title already exist' } );
+            return response.status( 400 ).json( { ok : false, msg : 'Title already exists' } );
         };
 
 
@@ -28,14 +28,14 @@ const newGame = async ( request, response = response ) =>
         await game.save();
 
 
-        return response.status( 200 ).json( { ok : true, msg : 'Game added succefully' } );
+        return response.status( 200 ).json( { ok : true, msg : 'Game added successfully' } );
 
     } 
     catch( error ) 
     {
         
         console.log( error );
-        return response.status( 500 ).json( { ok : false, msg : 'Something went wrong, please contact the administraitor' } );
+        return response.status( 500 ).json( { ok : false, msg : 'Something went wrong, please contact the administrator' } );
 
     };
 
@@ -48,9 +48,10 @@ const getGames = async ( request, response = response ) =>
     try 
     {
 
-        const games = await Game.find();
+        let games = await Game.find();
 
-
+        games.sort( ( a, b ) => a.title < b.title && -1 );
+        
         if( games.length > 0 )
         {
             return response.status( 200 ).json( { ok : true, msg : 'Get games', games } );
@@ -66,7 +67,79 @@ const getGames = async ( request, response = response ) =>
     {
 
         console.log( error );
-        return response.status( 500 ).json( { ok : false, msg : 'Something went wrong, please contact the administraitor' } );
+        return response.status( 500 ).json( { ok : false, msg : 'Something went wrong, please contact the administrator' } );
+
+    };
+
+};
+
+
+const getGamesByGender = async ( request, response = response ) =>
+{
+
+    try 
+    {
+        
+        const { gender } = request.body;
+
+        let games = await Game.find();
+
+        games = games.filter( ( game ) => game.gender === gender );
+
+        games.sort( ( a, b ) => a.title < b.title && -1 );
+
+        if( games.length > 0 )
+        {
+            return response.status( 200 ).json( { ok : true, msg : 'Get games by gender', games } );
+        }
+        else
+        {
+            return response.status( 404 ).json( { ok : false, msg : `Games don't found` } );
+        };
+
+
+    } 
+    catch( error ) 
+    {
+
+        console.log( error );
+        return response.status( 500 ).json( { ok : false, msg : 'Something went wrong, please contact the administrator' } );
+
+    };
+
+};
+
+
+const getGamesByTitle = async ( request, response = response ) =>
+{
+
+    try 
+    {
+        
+        const { search } = request.body;
+
+        let games = await Game.find();
+
+        games = games.filter( ( game ) => game.title.includes( search ) );
+
+        games.sort( ( a, b ) => a.title < b.title && -1 );
+
+        if( games.length > 0 )
+        {
+            return response.status( 200 ).json( { ok : true, msg : 'Get games by search', games } );
+        }
+        else
+        {
+            return response.status( 404 ).json( { ok : false, msg : `Games don't found` } );
+        };
+
+
+    } 
+    catch( error ) 
+    {
+
+        console.log( error );
+        return response.status( 500 ).json( { ok : false, msg : 'Something went wrong, please contact the administrator' } );
 
     };
 
@@ -99,14 +172,14 @@ const updateGame = async ( request, response = response ) =>
         await Game.findByIdAndUpdate( _id, game);
 
 
-        return response.status( 200 ).json( { ok : true, msg : 'Update game' } );
+        return response.status( 200 ).json( { ok : true, msg : 'Game updated successfully' } );
 
     } 
     catch( error ) 
     {
         
         console.log( error );
-        return response.status( 500 ).json( { ok : false, msg : 'Something went wrong, please contact the administraitor' } );
+        return response.status( 500 ).json( { ok : false, msg : 'Something went wrong, please contact the administrator' } );
 
     };
 
@@ -131,14 +204,14 @@ const deleteGame = async ( request, response = response ) =>
         };
 
 
-        return response.status( 200 ).json( { ok : true, msg : 'Game deleted succefully' } );
+        return response.status( 200 ).json( { ok : true, msg : 'Game deleted successfully' } );
 
     } 
     catch( error ) 
     {
         
         console.log( error );
-        return response.status( 500 ).json( { ok : false, msg : 'Something went wrong, please contact the administraitor' } );
+        return response.status( 500 ).json( { ok : false, msg : 'Something went wrong, please contact the administrator' } );
 
     };
 
@@ -147,4 +220,4 @@ const deleteGame = async ( request, response = response ) =>
 
 //////---------------------------------------------->>>>>
 
-module.exports = { newGame, getGames, updateGame ,deleteGame };
+module.exports = { newGame, getGames, getGamesByGender, getGamesByTitle, updateGame ,deleteGame };

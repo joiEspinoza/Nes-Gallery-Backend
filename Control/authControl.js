@@ -17,14 +17,14 @@ const register = async ( request, response = response ) =>
         let user = await User.findOne( { email } )
         if( user )
         {
-            return response.status( 400 ).json( { ok : false, msg : 'Email already exist' } ); 
+            return response.status( 400 ).json( { ok : false, msg : 'Email already exists' } ); 
         };
 
 
         user = await User.findOne( { name } )
         if( user )
         {
-            return response.status( 400 ).json( { ok : false, msg : 'Name already exist' } ); 
+            return response.status( 400 ).json( { ok : false, msg : 'Name already exists' } ); 
         };
 
 
@@ -38,14 +38,14 @@ const register = async ( request, response = response ) =>
         await user.save();
 
 
-        return response.status( 200 ).json( { ok : true, msg : 'Register User' } );
+        return response.status( 200 ).json( { ok : true, msg : 'Successful user registration' } );
 
     } 
     catch( error ) 
     {
         
         console.log( error );
-        return response.status( 500 ).json( { ok : false, msg : 'Something went wrong, please contact the administraitor' } );
+        return response.status( 500 ).json( { ok : false, msg : 'Something went wrong, please contact the administrator' } );
 
     };
 
@@ -72,18 +72,18 @@ const login = async ( request, response = response ) =>
         const validPassword = bcryptjs.compareSync( password, user.password );
         if( !validPassword )
         {
-            return response.status( 400 ).json( { ok : false, msg : "Access denied - wrong password" } );
+            return response.status( 400 ).json( { ok : false, msg : "Access denied - the password is wrong" } );
         };
 
 
-        return response.status( 200 ).json( { ok : true, msg : 'login User', user } );
+        return response.status( 200 ).json( { ok : true, msg : 'Access granted', user } );
 
     } 
     catch( error ) 
     {
         
         console.log( error );
-        return response.status( 500 ).json( { ok : false, msg : 'Something went wrong, please contact the administraitor' } );
+        return response.status( 500 ).json( { ok : false, msg : 'Something went wrong, please contact the administrator' } );
 
     };
 
@@ -121,7 +121,7 @@ const updatePassword = async ( request, response = response ) =>
     catch( error ) 
     {
         console.log( error );
-        return response.status( 500 ).json( { ok : false, msg : 'Something went wrong, please contact the administraitor' } );
+        return response.status( 500 ).json( { ok : false, msg : 'Something went wrong, please contact the administrator' } );
 
     };
 

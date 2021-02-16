@@ -11,11 +11,7 @@ const gameSchema = Schema(
 
         gender : { type : String, required : true },
         
-        realese : { type : String, required : true },
-
-        price : { type : Number, require : true },
-
-        stock : { type : Number, require : true },
+        release : { type : String, required : true },
 
         rate : { type : Number, required : true },
 

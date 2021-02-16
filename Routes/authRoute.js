@@ -14,8 +14,8 @@ router.post(
     '/register', 
     [
 
-        check( 'email', 'Email is required' ).isEmail().notEmpty(),
-        check( 'name', 'Name must have at least 4 characters' ).isLength( { min : 4 } ),
+        check( 'email', 'An email is required' ).isEmail().notEmpty(),
+        check( 'name', 'The name must have at least 4 characters' ).isLength( { min : 4 } ),
         check( 'password', 'Password must have at least 6 characters' ).isLength( { min : 6 } ),
         ValidatorMidd
 
@@ -30,7 +30,7 @@ router.post(
     '/login',
     [
 
-        check( 'email', 'Email is required' ).isEmail().notEmpty(),
+        check( 'email', 'An email is required' ).isEmail().notEmpty(),
         check( 'password', 'Password must have at least 6 characters' ).isLength( { min : 6 } ),
         ValidatorMidd
 
@@ -44,7 +44,7 @@ router.put(
     '/updatePassword', 
     [
         
-        check( 'oldPassword', 'Current password is required' ).isLength( { min : 6 } ),
+        check( 'oldPassword', 'The current password is required' ).isLength( { min : 6 } ),
         check( 'newPassword', 'New password must have at least 6 characters' ).isLength( { min : 6 } ),
         ValidatorMidd
 

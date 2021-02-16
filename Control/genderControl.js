@@ -10,24 +10,25 @@ const createGender = async ( request, response = response ) =>
 {
     try 
     {   
-        console.log(  request.body)
+
         let gender = await Gender.findOne( request.body );
 
         if( gender )
         {
-            return response.status( 400 ).json( { ok : false, msg : 'Gender already exist' } )
+            return response.status( 400 ).json( { ok : false, msg : 'Gender already exists' } )
         };
 
         gender = new Gender( request.body );
 
         await gender.save();
 
-        return response.status( 200 ).json( { ok : true, msg : 'Create Gender ok' } );
+        return response.status( 200 ).json( { ok : true, msg : 'Gender added successfully' } );
 
     } 
     catch( error ) 
     {
-        return response.status( 500 ).json( { ok : false, msg : 'Please contact to the administraitor' } );
+        console.log( error );
+        return response.status( 500 ).json( { ok : false, msg : 'Something went wrong, please contact the administrator' } );
     };
 };
 
@@ -37,15 +38,16 @@ const getGenders = async ( request, response = response ) =>
 
     try 
     {
-        
-        const genders = await Gender.find();
+        let genders = await Gender.find();
+
+        genders.sort( ( a, b ) => a.descr < b.descr && -1 )
 
         return response.status( 200 ).json( { ok : true, msg : 'Get genders', genders } );
-
     } 
     catch( error ) 
     {
-        return response.status( 500 ).json( { ok : false, msg : 'Please contact to the administraitor' } );
+        console.log( error );
+        return response.status( 500 ).json( { ok : false, msg : 'Something went wrong, please contact the administrator' } );
     };
 
 };
@@ -73,7 +75,7 @@ const deleteGender  = async ( request, response = response ) =>
     catch( error ) 
     {
         console.log( error );
-        return response.status( 500 ).json( { ok : false, msg : 'Please contact to the administraitor' } );
+        return response.status( 500 ).json( { ok : false, msg : 'Something went wrong, please contact the administrator' } );
     };
 
 };

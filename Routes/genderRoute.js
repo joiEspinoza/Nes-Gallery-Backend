@@ -13,7 +13,7 @@ router.post(
 
     '/createGender', 
     [
-        check( 'descr', 'Description is required' ).notEmpty(),
+        check( 'descr', 'A description is required' ).notEmpty(),
         ValidatorMidd
     ]
     ,createGender 
